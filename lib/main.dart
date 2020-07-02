@@ -27,9 +27,7 @@ Future<YTVideo> fetchAziYT() async {
   }
 }
 
-void main() {
-  runApp(MyApp());
-}
+void main() => runApp(MyApp());
 
 class MyApp extends StatefulWidget {
   MyApp({Key key}) : super(key: key);
@@ -39,6 +37,28 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   Future<YTVideo> videoData;
+  int _selectedIndex = 0;
+  static const TextStyle optionStyle =
+      TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
+  static const List<Widget> _widgetOptions = <Widget>[
+    Text(
+      'Index 0: Azi_YT',
+      style: optionStyle,
+    ),
+    Text(
+      'Index 1: Azi_SNS',
+      style: optionStyle,
+    ),
+    Text(
+      'Index 2: Azi_Info',
+      style: optionStyle,
+    ),
+  ];
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+  }
   @override
   void initState() {
     super.initState();
@@ -57,19 +77,32 @@ class _MyAppState extends State<MyApp> {
               future: videoData,
               builder: (context, snapshot) {
                 if (snapshot.hasData) {
-                  return Column (
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      Image.network("https://i.ytimg.com/vi/5zvqZkPzQ1Q/0.jpg"),
-                      Text(snapshot.data.title),
-                    ],
-                  );
+                  return _widgetOptions.elementAt(_selectedIndex);
                 } else if (snapshot.hasError) {
                   return Text("${snapshot.error}");
                 }
               return CircularProgressIndicator();
               }
             )  
+        ),
+        bottomNavigationBar: BottomNavigationBar(
+        items: const <BottomNavigationBarItem>[
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home),
+            title: Text('아지 유튜브'),
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.business),
+            title: Text('아지 SNS'),
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.school),
+            title: Text('아지 정보'),
+          ),
+        ],
+        currentIndex: _selectedIndex,
+        selectedItemColor: Colors.amber[800],
+        onTap: _onItemTapped,
         ),
       ),
     );
