@@ -18,9 +18,12 @@ class _MyAppState extends State<MyApp> {
         future: fetchAziYT(),
         builder: (context, snapshot) {
           if (snapshot.hasData) {
-            return Text(
-              snapshot.data.title,
-              style: optionStyle
+            return Column(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: <Widget>[
+                Image.network("https://i.ytimg.com/vi/5zvqZkPzQ1Q/0.jpg"),
+                Text(snapshot.data.title),
+              ],
             );
           } else if (snapshot.hasError) {
             return Text("${snapshot.error}");
@@ -58,15 +61,15 @@ class _MyAppState extends State<MyApp> {
         bottomNavigationBar: BottomNavigationBar(
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
-            icon: Icon(Icons.home),
+            icon: Icon(Icons.video_library),
             title: Text('아지 유튜브'),
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.business),
+            icon: Icon(Icons.people),
             title: Text('아지 SNS'),
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.school),
+            icon: Icon(Icons.info),
             title: Text('아지 정보'),
           ),
         ],
