@@ -1,16 +1,30 @@
 import 'package:flutter/material.dart';
 import 'package:AziApp/ytvideo.dart';
-import 'package:youtube_explode_dart/youtube_explode_dart.dart';
+import 'package:youtube_explode_dart/youtube_explode_dart.dart' show Video;
 
-void main() => runApp(MyApp());
+void main() {
+  ErrorWidget.builder = (FlutterErrorDetails details) {
+    return Container(
+      alignment: Alignment.center,
+      child: 
+        Image.asset("assets/OnException2.png"),
+        
+    );
+    };
+    runApp(AziApp());
+} 
 
-class MyApp extends StatefulWidget {
-  MyApp({Key key}) : super(key: key);
+Widget onExpection (FlutterErrorDetails error) {
+  return Center (child: Text("ERROR!"),);
+}
+
+class AziApp extends StatefulWidget {
+  AziApp({Key key}) : super(key: key);
   @override
   _MyAppState createState() => _MyAppState();
 }
 
-class _MyAppState extends State<MyApp> {
+class _MyAppState extends State<AziApp> {
   int _selectedIndex = 0;
   static const TextStyle optionStyle =
       TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
@@ -54,6 +68,8 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
+    
+    throw ("에러화면 테스트!");
     return MaterialApp(
       title: 'AziApp',
       home: Scaffold(
