@@ -1,0 +1,5 @@
+version: "Apple Swift version 5.3 (swiftlang-1200.0.29.2 clang-1200.0.30.1)"
+options: "c9bbf0758e484252deb1b37b05194194"
+build_time: [1604944014, 351191000]
+inputs:
+  "/Users/hyuncha/Documents/Aziapp/ios/Runner/AppDelegate.swift": [1604943026, 730991083]

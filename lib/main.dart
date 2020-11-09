@@ -68,8 +68,6 @@ class _MyAppState extends State<AziApp> {
 
   @override
   Widget build(BuildContext context) {
-    
-    throw ("에러화면 테스트!");
     return MaterialApp(
       title: 'AziApp',
       home: Scaffold(
@@ -95,6 +93,12 @@ class _MyAppState extends State<AziApp> {
           selectedItemColor: Colors.pink[300],
           onTap: _onItemTapped,
         ),
+      ),
+      theme: ThemeData(
+        brightness: Brightness.light
+      ),
+      darkTheme: ThemeData(
+        brightness: Brightness.dark
       ),
     );
   }
